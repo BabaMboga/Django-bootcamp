@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.deconstruct import deconstructible
 
+# way to deconstruct the image file path for the profile
 @deconstructible
 class GenerateProfileImagePath(object):
 
@@ -17,6 +18,7 @@ class GenerateProfileImagePath(object):
     
 user_profile_name_path = GenerateProfileImagePath()
 
+# Added a profile model that adds to the user
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.FileField(upload_to=user_profile_name_path, blank=True, null=True)
